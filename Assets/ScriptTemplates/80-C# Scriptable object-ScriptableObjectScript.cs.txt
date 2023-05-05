@@ -1,0 +1,6 @@
+using UnityEngine;
+
+namespace KC {
+	public sealed class #SCRIPTNAME# : ScriptableObject {
+	}
+}

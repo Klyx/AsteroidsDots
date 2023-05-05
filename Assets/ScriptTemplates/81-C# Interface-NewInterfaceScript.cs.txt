@@ -1,0 +1,5 @@
+
+namespace KC {
+	public interface #SCRIPTNAME# {
+	}
+}
