@@ -7,7 +7,6 @@ using Unity.Physics;
 using Unity.Physics.Extensions;
 using Unity.Physics.Systems;
 using Unity.Transforms;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace KC.Systems {
@@ -40,7 +39,7 @@ namespace KC.Systems {
             if (_moveInput == 0f) {
                 return;
             }
-            
+
             velocity.ValueRW.ApplyLinearImpulse(in mass.ValueRO,
                 math.forward(localToWorld.ValueRO.Rotation) * movementData.ValueRO.linearImpulseForce *
                 deltaTime);

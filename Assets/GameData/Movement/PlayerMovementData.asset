@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ffa9bf289866441a2aaf67f3c5d9c3, type: 3}
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: 
-  maxLinearVelocity: 1
-  linearImpulseForce: 100
+  linearImpulseForce: 75
   angularSpeed: 150

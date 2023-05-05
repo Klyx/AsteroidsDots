@@ -17,7 +17,6 @@ namespace KC.Authoring {
 				AddComponent<PlayerTag>(entity);
 				
 				AddComponent(entity, new MovementData() {
-					maxLinearVelocity = authoring._movementGameData.maxLinearVelocity,
 					linearImpulseForce = authoring._movementGameData.linearImpulseForce,
 					angularSpeed = authoring._movementGameData.angularSpeed
 				});
