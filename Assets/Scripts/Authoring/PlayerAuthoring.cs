@@ -15,6 +15,7 @@ namespace KC.Authoring {
 				Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 				
 				AddComponent<PlayerTag>(entity);
+				AddComponent<ScreenWarpTag>(entity);
 				
 				AddComponent(entity, new MovementData() {
 					linearImpulseForce = authoring._movementGameData.linearImpulseForce,
