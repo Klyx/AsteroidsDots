@@ -38,10 +38,10 @@ namespace KC.Systems
 
         [BurstCompile]
         private void WarpX(float viewportPositionX, ref float3 worldPosition) {
-            if (viewportPositionX + math.EPSILON > 1f) {
+            if (viewportPositionX > 1f) {
                 worldPosition.x = -worldPosition.x + TeleportOffset;
             }
-            else if (viewportPositionX - math.EPSILON < 0f) {
+            else if (viewportPositionX < 0f) {
                 worldPosition.x = -worldPosition.x - TeleportOffset;
             }
         }
