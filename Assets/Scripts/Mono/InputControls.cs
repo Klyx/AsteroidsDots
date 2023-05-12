@@ -46,6 +46,15 @@ namespace KC.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f5a2597-1423-48e1-9091-8bfa9d32965e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -180,6 +189,17 @@ namespace KC.Input
                     ""action"": ""Turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8cc8e3ac-d1fc-42e7-a5a2-aae53d938537"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -202,6 +222,7 @@ namespace KC.Input
             m_Play = asset.FindActionMap("Play", throwIfNotFound: true);
             m_Play_Move = m_Play.FindAction("Move", throwIfNotFound: true);
             m_Play_Turn = m_Play.FindAction("Turn", throwIfNotFound: true);
+            m_Play_Shoot = m_Play.FindAction("Shoot", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -265,12 +286,14 @@ namespace KC.Input
         private List<IPlayActions> m_PlayActionsCallbackInterfaces = new List<IPlayActions>();
         private readonly InputAction m_Play_Move;
         private readonly InputAction m_Play_Turn;
+        private readonly InputAction m_Play_Shoot;
         public struct PlayActions
         {
             private @InputControls m_Wrapper;
             public PlayActions(@InputControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Play_Move;
             public InputAction @Turn => m_Wrapper.m_Play_Turn;
+            public InputAction @Shoot => m_Wrapper.m_Play_Shoot;
             public InputActionMap Get() { return m_Wrapper.m_Play; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -286,6 +309,9 @@ namespace KC.Input
                 @Turn.started += instance.OnTurn;
                 @Turn.performed += instance.OnTurn;
                 @Turn.canceled += instance.OnTurn;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
 
             private void UnregisterCallbacks(IPlayActions instance)
@@ -296,6 +322,9 @@ namespace KC.Input
                 @Turn.started -= instance.OnTurn;
                 @Turn.performed -= instance.OnTurn;
                 @Turn.canceled -= instance.OnTurn;
+                @Shoot.started -= instance.OnShoot;
+                @Shoot.performed -= instance.OnShoot;
+                @Shoot.canceled -= instance.OnShoot;
             }
 
             public void RemoveCallbacks(IPlayActions instance)
@@ -326,6 +355,7 @@ namespace KC.Input
         {
             void OnMove(InputAction.CallbackContext context);
             void OnTurn(InputAction.CallbackContext context);
+            void OnShoot(InputAction.CallbackContext context);
         }
     }
 }

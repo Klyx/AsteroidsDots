@@ -1,3 +1,4 @@
+using KC.Data;
 using KC.Input;
 using KC.Tags;
 using Unity.Burst;
@@ -7,6 +8,7 @@ using Unity.Physics;
 using Unity.Physics.Extensions;
 using Unity.Physics.Systems;
 using Unity.Transforms;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace KC.Systems {
@@ -30,7 +32,7 @@ namespace KC.Systems {
             RefRO<LocalToWorld> localToWorld = SystemAPI.GetComponentRW<LocalToWorld>(_playerEntity, true);
             RefRW<PhysicsVelocity> velocity = SystemAPI.GetComponentRW<PhysicsVelocity>(_playerEntity, false);
             RefRO<PhysicsMass> mass = SystemAPI.GetComponentRW<PhysicsMass>(_playerEntity, true);
-            RefRW<MovementData> movementData = SystemAPI.GetComponentRW<MovementData>(_playerEntity, false);
+            RefRO<MovementData> movementData = SystemAPI.GetComponentRW<MovementData>(_playerEntity, true);
 
             float deltaTime = SystemAPI.Time.fixedDeltaTime;
 
@@ -62,6 +64,13 @@ namespace KC.Systems {
 
         public void OnTurn(InputAction.CallbackContext context) {
             _turnInput = context.ReadValue<float>();
+        }
+
+        public void OnShoot(InputAction.CallbackContext context) {
+            if (!context.performed) {
+                return;
+            }
+            Debug.Log("shoot");
         }
     }
 }

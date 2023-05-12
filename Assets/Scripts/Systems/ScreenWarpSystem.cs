@@ -11,6 +11,8 @@ namespace KC.Systems
     public sealed partial class ScreenWarpSystem : SystemBase {
         private Camera _camera;
         private EntityQuery _entityQuery;
+        
+        private const float TeleportOffset = 0.05f;
 
         protected override void OnUpdate() {
             foreach (var transform in
@@ -21,11 +23,11 @@ namespace KC.Systems
 
                 WarpX(viewportPosition.x, ref worldPosition);
                 WarpY(viewportPosition.y, ref worldPosition);
-
+                
                 transform.ValueRW.Position = worldPosition;
             }
         }
-        
+
         protected override void OnStartRunning() {
             _camera = Camera.main;
         }
@@ -35,28 +37,22 @@ namespace KC.Systems
         }
 
         [BurstCompile]
-        private void WarpX(float viewportPositionX, ref float3 worldPosition)
-        {
-            if (viewportPositionX > 1f)
-            {
-                worldPosition.x = -worldPosition.x + math.EPSILON;
+        private void WarpX(float viewportPositionX, ref float3 worldPosition) {
+            if (viewportPositionX + math.EPSILON > 1f) {
+                worldPosition.x = -worldPosition.x + TeleportOffset;
             }
-            else if (viewportPositionX < 0f)
-            {
-                worldPosition.x = -worldPosition.x - math.EPSILON;
+            else if (viewportPositionX - math.EPSILON < 0f) {
+                worldPosition.x = -worldPosition.x - TeleportOffset;
             }
         }
 
         [BurstCompile]
-        private void WarpY(float viewportPositionY, ref float3 worldPosition)
-        {
-            if (viewportPositionY > 1f)
-            {
-                worldPosition.z = -worldPosition.z + math.EPSILON;
+        private void WarpY(float viewportPositionY, ref float3 worldPosition) {
+            if (viewportPositionY > 1f) {
+                worldPosition.z = -worldPosition.z + TeleportOffset;
             }
-            else if (viewportPositionY < 0f)
-            {
-                worldPosition.z = -worldPosition.z - math.EPSILON;
+            else if (viewportPositionY < 0f) {
+                worldPosition.z = -worldPosition.z - TeleportOffset;
             }
         }
     }

@@ -1,3 +1,4 @@
+using KC.Data;
 using KC.GameData;
 using KC.Tags;
 using Unity.Assertions;
@@ -8,7 +9,7 @@ namespace KC.Authoring {
 	public sealed class PlayerAuthoring : MonoBehaviour {
 		[SerializeField] private MovementGameData _movementGameData;
 
-		private class Baker : Baker<PlayerAuthoring> {
+		private sealed class Baker : Baker<PlayerAuthoring> {
 			public override void Bake(PlayerAuthoring authoring) {
 				Assert.IsNotNull(authoring._movementGameData, "authoring._movementGameData != null");
 				
