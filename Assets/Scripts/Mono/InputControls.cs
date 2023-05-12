@@ -53,8 +53,8 @@ namespace KC.Input
                     ""id"": ""9f5a2597-1423-48e1-9091-8bfa9d32965e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
