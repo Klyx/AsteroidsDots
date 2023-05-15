@@ -16,8 +16,7 @@ namespace KC.Systems
 
         protected override void OnUpdate() {
             foreach (var transform in
-                     SystemAPI.Query<RefRW<LocalTransform>>().WithAll<ScreenWarpTag>())
-            {
+                     SystemAPI.Query<RefRW<LocalTransform>>().WithAll<ScreenWarpTag>()) {
                 float3 worldPosition = transform.ValueRO.Position;
                 float3 viewportPosition = _camera.WorldToViewportPoint(worldPosition);
 

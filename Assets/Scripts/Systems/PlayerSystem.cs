@@ -33,6 +33,10 @@ namespace KC.Systems {
 
         [BurstCompile]
         protected override void OnUpdate() {
+            if (!SystemAPI.HasSingleton<PlayerTag>()) {
+                return;
+            }
+
             RefRO<LocalToWorld> localToWorld = SystemAPI.GetComponentRW<LocalToWorld>(_playerEntity, true);
             RefRW<PhysicsVelocity> velocity = SystemAPI.GetComponentRW<PhysicsVelocity>(_playerEntity, false);
             RefRO<PhysicsMass> mass = SystemAPI.GetComponentRW<PhysicsMass>(_playerEntity, true);

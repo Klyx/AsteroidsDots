@@ -15,4 +15,4 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6857936158144668276, guid: 13d1f5ad09b295847a233c8d83f5fdc0,
     type: 3}
   force: 100
-  roundsPerMinute: 30
+  roundsPerMinute: 650
